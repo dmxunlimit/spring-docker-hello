@@ -13,7 +13,7 @@ RUN mvn package
 FROM eclipse-temurin:11
 
 #add user
-RUN useradd -ms /bin/bash admin
+RUN useradd admin -u 10001 -ms /bin/bash
 
 WORKDIR /data/
 
