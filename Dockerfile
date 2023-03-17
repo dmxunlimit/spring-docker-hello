@@ -12,7 +12,7 @@ RUN mvn package
 #pull base image
 FROM eclipse-temurin:11
 
-#add user
+#add user with id
 RUN useradd admin -u 10001 -ms /bin/bash
 
 WORKDIR /data/
