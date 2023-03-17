@@ -13,7 +13,11 @@ RUN mvn package
 FROM eclipse-temurin:11
 
 #add user with id
-RUN useradd admin -u 10001 -ms /bin/bash
+# Create a new user with UID 10014
+RUN addgroup -g 10014 admin && \
+    adduser  --disabled-password  --no-create-home --uid 10014 --ingroup admin admin
+
+USER 10014
 
 WORKDIR /data/
 
