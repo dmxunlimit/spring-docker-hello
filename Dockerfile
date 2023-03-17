@@ -12,6 +12,8 @@ RUN mvn package
 #pull base image
 FROM eclipse-temurin:11
 
+USER 10014
+
 #expose port 8080
 EXPOSE 8080
 
