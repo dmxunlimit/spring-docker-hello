@@ -18,10 +18,6 @@ FROM eclipse-temurin:11
 RUN addgroup -g 10014 admin && \
     adduser --uid 10014 --ingroup admin admin
 
-
-USER 10014
-
-
 WORKDIR /data/
 
 #expose port 8080
@@ -35,6 +31,8 @@ COPY --from=maven_build /tmp/target/helloworld-1.0.jar /data/helloworld-1.0.jar
 
 RUN chown -R admin:admin /data
 RUN chmod -R 755 /data
+
+USER 10014
 
 #default command
 
