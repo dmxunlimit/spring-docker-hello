@@ -18,29 +18,29 @@ FROM eclipse-temurin:11
 
 #add user with id
 # Create a new user with UID 10014
-RUN echo "RUN addgroup -g 10014 admin "
+RUN echo "'####RUN addgroup -g 10014 admin'"
 RUN addgroup -g 10014 admin && \
     adduser --uid 10014 --ingroup admin admin
 
-RUN echo "USER 10014"
+RUN echo "COPY src /tmp/src/"
 USER 10014
 
-RUN echo "WORKDIR /data/"
+RUN echo "COPY src /tmp/src/"
 WORKDIR /data/
 
 #expose port 8080
 EXPOSE 8080
 
 #copy hello world to docker image from builder image
-RUN echo "COPY --from=maven_build"
+RUN echo "COPY src /tmp/src/"
 COPY --from=maven_build /tmp/target/helloworld-1.0.jar /data/helloworld-1.0.jar
 
 #set permissions
-RUN echo "RUN chown -R admin:admin /data"
+RUN echo "COPY src /tmp/src/"
 RUN chown -R admin:admin /data
 RUN chmod -R 755 /data
 
 #default command
-RUN echo "CMD java -jar /data/helloworld-1.0.jar"
+RUN echo "COPY src /tmp/src/"
 CMD java -jar /data/helloworld-1.0.jar
 
