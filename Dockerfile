@@ -30,7 +30,6 @@ COPY --from=maven_build /tmp/target/helloworld-1.0.jar /data/helloworld-1.0.jar
 #set permissions
 RUN chown -R admin:admin /data
 RUN chmod -R 755 /data
-USER admin
 
 #default command
 CMD java -jar /data/helloworld-1.0.jar
