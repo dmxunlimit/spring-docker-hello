@@ -18,6 +18,8 @@ FROM eclipse-temurin:11
 RUN addgroup -g 10014 choreo && \
     adduser  --disabled-password  --no-create-home --uid 10014 --ingroup choreo choreouser
 
+VOLUME /tmp
+
 USER 10014
 
 WORKDIR /data/
@@ -32,9 +34,7 @@ COPY --from=maven_build /tmp/target/helloworld-1.0.jar /data/helloworld-1.0.jar
 #set permissions
 
 # RUN chown -R admin:admin /data
-# RUN chmod -R 755 /data
-
-USER 10014
+# RUN chmod -R 755 /dat
 
 #default command
 
