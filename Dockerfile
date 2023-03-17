@@ -15,7 +15,7 @@ FROM eclipse-temurin:11
 #add user with id
 # Create a new user with UID 10014
 RUN addgroup -g 10014 admin && \
-    adduser  --disabled-password  --no-create-home --uid 10014 --ingroup admin admin
+    adduser --uid 10014 --ingroup admin admin
 
 USER 10014
 
