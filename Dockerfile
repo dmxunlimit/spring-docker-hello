@@ -15,12 +15,12 @@ FROM eclipse-temurin:11
 #add user with id
 # Create a new user with UID 10014
 
-RUN addgroup -g 10014 choreo && \
-    adduser  --disabled-password  --no-create-home --uid 10014 --ingroup choreo choreouser
+# RUN addgroup -g 10014 choreo && \
+#     adduser  --disabled-password  --no-create-home --uid 10014 --ingroup choreo choreouser
 
-VOLUME /tmp
+RUN useradd admin -u 10014 -ms /bin/bash
 
-USER 10014
+# VOLUME /tmp
 
 WORKDIR /data/
 
@@ -32,9 +32,13 @@ EXPOSE 8080
 COPY --from=maven_build /tmp/target/helloworld-1.0.jar /data/helloworld-1.0.jar
 
 #set permissions
+RUN chown -R admin:admin /data
+RUN chmod -R 755 /data
 
 # RUN chown -R admin:admin /data
-RUN chmod -R 755 /root
+RUN chmod -R 755 /root/
+
+USER 10014
 
 #default command
 
